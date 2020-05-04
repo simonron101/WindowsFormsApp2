@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -32,15 +25,15 @@ namespace WindowsFormsApp2
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void testTextBox_TextChanged(object sender, EventArgs e)
         {
-            label1.Text = textBox1.Text;
+            label1.Text = testTextBox.Text;
             label1.ForeColor = System.Drawing.Color.DarkBlue;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
+            testTextBox.Text = "";
             label1.Text = "Cleared";
             label1.ForeColor = System.Drawing.Color.DarkGreen;
 
@@ -56,30 +49,45 @@ namespace WindowsFormsApp2
 
         }
 
-            
-            private void firstTextBox_TextChanged(object sender, EventArgs e)
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
-            var tuple = CheckNumbers(firstTextBox.Text, int.Parse(textBox2.Text));
-            var Number = tuple.Item1;
-            var num = tuple.Item2;
-            Number = Number + num;
-            outputLbl.Text = Number.ToString();
+           
+            CheckNumbers(textBox1.Text, textBox2.Text);
+        
         }
-
-
-
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
+          
+            CheckNumbers(textBox2.Text, textBox1.Text);
+   
+        }
 
-            var tuple = CheckNumbers(textBox2.Text, int.Parse(firstTextBox.Text));
+        public int CheckNumbers(string text, string text2)
+        {
+            int Number;
+            Number = 0;
+            if ((text != null) && (text2 != null))
+            { 
+                bool success =(int.TryParse(text, out Number))&& (int.TryParse(text2, out Number));
+                if (!success)
+                {
+                 
+                   outputLbl.Text = "Not a number";
+                   return Number;
+                }
 
-            var Number = tuple.Item1;
-            var num = tuple.Item2;
-            Number = Number + num;
+               // else
+               // {
+                  //  Number = int.Parse(text) + int.Parse(text2);
+                  //  return Number;
+               // }
+               
+            }
+            Number = int.Parse(text) + int.Parse(text2);
             outputLbl.Text = Number.ToString();
-            
+            return Number;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -94,25 +102,6 @@ namespace WindowsFormsApp2
         private void label4_Click(object sender, EventArgs e)
         {
 
-        }
-
-
-
-        public Tuple<int, int>  CheckNumbers(string text, int num)
-        {
-            if (text != null)
-            {
-                int Number;
-                bool success = Int32.TryParse(text, out Number);
-                if (!success)
-                {
-                    Number = 0;
-                }
-                return new Tuple<int, int>(Number, num);
-            }
-            else {  Number = 0; 
-                return new Tuple<int, int>(Number, num);
-            }
         }
     }
 }
