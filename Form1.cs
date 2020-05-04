@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -9,6 +10,8 @@ namespace WindowsFormsApp2
         string text;
         string text2;
         string test;
+        string toBase = "12";
+        string fromBase = "10";
 
         public Form1()
         {
@@ -47,8 +50,7 @@ namespace WindowsFormsApp2
 
         public int CheckNumbers(string text, string text2)
         {
-            label9.Text = text;
-            label10.Text = text2;
+  
 
             // Number = 0;
             if ((text != null) && (text2 != null))
@@ -78,50 +80,74 @@ namespace WindowsFormsApp2
         public void DoMath(string text, string text2)
         {
 
-            //label6.Text = "GOTIT";
-           // label6.Text = "switch test before= " + test;
           if ((text != null) && (text2 != null))
             {
 
-               // label8.Text = "switch test after= "+test;
                 switch (test)
                 {
                     case "Plus":
                         Number = int.Parse(text) + int.Parse(text2);
                         outputLbl.Text = Number.ToString();
-                   // label7.Text = "output " + Number.ToString();
 
                     break;
                     case "Minus":
                         Number = int.Parse(text) - int.Parse(text2);
                         outputLbl.Text = Number.ToString();
-                    //label7.Text = "output " + Number.ToString();
                     break;
                     case "Multiply":
                         Number = int.Parse(text) * int.Parse(text2);
                         outputLbl.Text = Number.ToString();
-                    //label7.Text = "output " + Number.ToString();
                     break;
                     case "Divide":
                         Number = int.Parse(text) / int.Parse(text2);
                         outputLbl.Text = Number.ToString();
-                   // label7.Text = "output " + Number.ToString();
-                    break;
-                    case "Power":
-                        Number = int.Parse(text) * int.Parse(text2) * int.Parse(text2);
-                        outputLbl.Text = Number.ToString();
-                  
                         break;
+
                     default:
-                        //label6.Text = "working on null";
-                        //Number = 2000;
-                    //label7.Text = "output " + Number.ToString();
+         
                     break;
                 }
             }
-             label7.Text = "output "+Number.ToString(); 
-           // outputLbl.Text = Number.ToString();
-            //label8.Text = "116 " + Number.ToString();
+
+
+
+
+           // String number = "100";
+           // int fromBase = 10;
+           // int toBase = 16;
+
+           // String result = Convert.ToString(Convert.ToInt32(number, fromBase), toBase);
+
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            fromBase = listBox2.GetItemText(listBox2.SelectedItem);
+        }
+
+        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            toBase = listBox3.GetItemText(listBox3.SelectedItem);
+        }
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+           var number = textBox3.Text;
+            var fromBase = 10;
+            var toBase = 2;
+
+           string result = Convert.ToString(Convert.ToInt32(number, fromBase), toBase);
+            label7.Text = result;
+        }
+
+  
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
 
         }
     }
