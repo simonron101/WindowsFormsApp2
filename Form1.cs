@@ -6,9 +6,6 @@ namespace WindowsFormsApp2
     public partial class Form1 : Form
     {
 
-       // public static int Number { get; private set; }
-        //public static bool success { get; private set; }
-
         public Form1()
         {
             InitializeComponent();
