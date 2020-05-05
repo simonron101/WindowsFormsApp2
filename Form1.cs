@@ -10,8 +10,9 @@ namespace WindowsFormsApp2
         string text;
         string text2;
         string test;
-        string toBase = "12";
-        string fromBase = "10";
+        int toBase = 10;
+        int fromBase = 10;
+
 
         public Form1()
         {
@@ -120,23 +121,23 @@ namespace WindowsFormsApp2
 
         }
 
-        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        // public void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        // private void listBox3_SelectedIndexChanged(object sender, System.EventArgs e)
+        //{
+        //}
+  
+        private void HandleScroll(Object sender, ScrollEventArgs e)
         {
-            fromBase = listBox2.GetItemText(listBox2.SelectedItem);
-        }
+                   // label10.Text = listBox3.SelectedItem.ToString(); //let textBox1 be your TextBox name and listBox1 be your ListBox name
+}
+ 
 
-        private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+        public void numericUpDown1_TextChanged(object sender, EventArgs e)
         {
-            toBase = listBox3.GetItemText(listBox3.SelectedItem);
-        }
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-           var number = textBox3.Text;
-            var fromBase = 10;
-            var toBase = 2;
-
-           string result = Convert.ToString(Convert.ToInt32(number, fromBase), toBase);
-            label7.Text = result;
+            if(numericUpDown1.Text != "") {
+                label7.Text = Convert.ToString(Convert.ToInt32(numericUpDown1.Text, fromBase), toBase);
+                
+            }
         }
 
   
@@ -149,6 +150,35 @@ namespace WindowsFormsApp2
         private void label7_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            toBase = 10;
+            label7.Text = Convert.ToString(Convert.ToInt32(numericUpDown1.Text, fromBase), toBase);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            toBase = 2;
+            label7.Text = Convert.ToString(Convert.ToInt32(numericUpDown1.Text, fromBase), toBase);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            toBase = 16;
+            label7.Text = Convert.ToString(Convert.ToInt32(numericUpDown1.Text, fromBase), toBase);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            toBase = 8;
+            label7.Text = Convert.ToString(Convert.ToInt32(numericUpDown1.Text, fromBase), toBase);
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            label7.Text = Convert.ToString(Convert.ToInt32(numericUpDown1.Text, fromBase), toBase);
         }
     }
            
